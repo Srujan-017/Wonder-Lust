@@ -18,11 +18,16 @@ After creating the Render service, add the required environment variables from y
 
 ### Listing Details With Map
 
-![Wonderlust listing details page](public/screenshots/listing.svg)
+![Wonderlust listing details page](public/screenshots/review.png)
 
 ### Create Listing
 
 ![Wonderlust create listing page](public/screenshots/new-listing.png)
+
+### Editing listings
+
+![Wonderlust create listing page](public/screenshots/edit.png)
+
 
 ## Features
 
