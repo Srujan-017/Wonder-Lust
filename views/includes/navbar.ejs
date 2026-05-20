@@ -1,71 +1,258 @@
-<style>
-  .search-btn{
-    background-color: #fe424d;
-    color:white;
-    border-radius:  25px;
-    padding:0 1rem 0 1rem;
-    
-  }
-  .search-btn :hover{
-    background-color: #fe424d;
-    color:white;
-    }
-    .search-btn i {
-      display: inline;
-      margin-right: 0.5rem;
-    }
-    .search-inp{
-      border-radius: 25px;
-      padding:0.5rem 3rem 0.5rem 3rem;
-      font-size: 0.9rem;
-    }
+<%# Replace: views/includes/navbar.ejs %>
 
+<style>
+  .wl-nav {
+    height: 4.5rem;
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  /* BRAND */
+  .wl-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .wl-brand .fa-compass { color: #fe424d; font-size: 1.8rem; }
+  .wl-brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #222;
+    letter-spacing: -0.3px;
+  }
+
+  /* SEARCH */
+  .wl-search {
+    flex: 1;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #ddd;
+    border-radius: 2rem;
+    padding: 0.3rem 0.3rem 0.3rem 1rem;
+    background: #fff;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .wl-search:focus-within {
+    border-color: #222;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .wl-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 0.9rem;
+    color: #222;
+    min-width: 0;
+  }
+  .wl-search input::placeholder { color: #aaa; }
+  .wl-search button {
+    background: #fe424d;
+    border: none;
+    color: white;
+    border-radius: 1.5rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .wl-search button:hover { background: #d93038; }
+
+  /* RIGHT ACTIONS */
+  .wl-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .wl-link {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 1.5rem;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .wl-link:hover { background: #f5f5f5; color: #222; }
+
+  .wl-btn-outline {
+    text-decoration: none;
+    border: 1.5px solid #222;
+    color: #222;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.38rem 1rem;
+    border-radius: 1.5rem;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .wl-btn-outline:hover { background: #222; color: #fff; }
+
+  .wl-btn-solid {
+    text-decoration: none;
+    background: #222;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.38rem 1rem;
+    border-radius: 1.5rem;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .wl-btn-solid:hover { background: #444; color: #fff; }
+
+  .wl-new-btn {
+    text-decoration: none;
+    background: #fe424d;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.38rem 1rem;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .wl-new-btn:hover { background: #d93038; color: #fff; }
+
+  /* MOBILE TOGGLE */
+  .wl-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: #222;
+    cursor: pointer;
+    padding: 0.25rem;
+    margin-left: auto;
+  }
+
+  /* MOBILE DRAWER */
+  .wl-drawer {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    padding: 0.75rem 1.5rem 1rem;
+  }
+  .wl-drawer.open { display: flex; }
+  .wl-drawer .wl-search { max-width: 100%; margin: 0; }
+  .wl-drawer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .wl-search { display: none; }
+    .wl-actions { display: none; }
+    .wl-toggle { display: block; }
+    .wl-brand-name { display: none; }
+  }
+  @media (min-width: 769px) {
+    .wl-drawer { display: none !important; }
+  }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button 
-      class="navbar-toggler" 
-      type="button" 
-      data-bs-toggle="collapse" 
-      data-bs-target="#navbarNavAltMarkup" >
-    
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          
-          <a class="nav-link" href="/listings">Explore</a>
-        </div>
-       <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search" action="/listings" method="GET">
-          <input 
-          class="form-control me-2 search-inp" 
-          type="search" 
-          name="search"
-          placeholder="Search destination" 
-          aria-label="Search"
-          value="<%= typeof search !== 'undefined' ? search : '' %>">
-          <button 
-          class="btn search-btn" 
-          type="submit">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          Search
-        </button>
-        </form>
-      </div>
+<nav class="wl-nav">
+  <a class="wl-brand" href="/listings">
+    <i class="fa-regular fa-compass"></i>
+    <span class="wl-brand-name">Wonderlust</span>
+  </a>
 
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
-          <% if(!currUser){%>
-          <a class="nav-link "  href="/signup"><b>signup</b></a>
-          <a class="nav-link" href="/login"><b>login</b></a>
-          <%}%> <%if(currUser){%>
-          <a class="nav-link" href="/logout">logout</a>
-          <%}%>
-        </div>
-      </div>
+  <form class="wl-search" action="/listings" method="GET">
+    <input
+      type="search"
+      name="search"
+      placeholder="Search destinations…"
+      value="<%= typeof search !== 'undefined' ? search : '' %>">
+    <button type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Search</span>
+    </button>
+  </form>
 
-    </div>
-  </nav>
+  <div class="wl-actions">
+    <a class="wl-link" href="/listings">Explore</a>
+
+    <% if (!currUser) { %>
+      <a class="wl-link" href="/listings/new">List your place</a>
+      <a class="wl-btn-outline" href="/signup">Sign up</a>
+      <a class="wl-btn-solid" href="/login">Log in</a>
+    <% } else { %>
+      <a class="wl-new-btn" href="/listings/new">
+        <i class="fa-solid fa-plus"></i> Add listing
+      </a>
+      <a class="wl-btn-outline" href="/logout">Log out</a>
+    <% } %>
+  </div>
+
+  <button class="wl-toggle" id="wlToggle" aria-label="Menu">
+    <i class="fa-solid fa-bars" id="wlToggleIcon"></i>
+  </button>
+</nav>
+
+<div class="wl-drawer" id="wlDrawer">
+  <form class="wl-search" action="/listings" method="GET">
+    <input
+      type="search"
+      name="search"
+      placeholder="Search destinations…"
+      value="<%= typeof search !== 'undefined' ? search : '' %>">
+    <button type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Search</span>
+    </button>
+  </form>
+
+  <div class="wl-drawer-links">
+    <a class="wl-link" href="/listings">Explore</a>
+    <% if (!currUser) { %>
+      <a class="wl-link" href="/listings/new">List your place</a>
+      <a class="wl-btn-outline" href="/signup">Sign up</a>
+      <a class="wl-btn-solid" href="/login">Log in</a>
+    <% } else { %>
+      <a class="wl-new-btn" href="/listings/new">
+        <i class="fa-solid fa-plus"></i> Add listing
+      </a>
+      <a class="wl-btn-outline" href="/logout">Log out</a>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('wlToggle');
+  const drawer = document.getElementById('wlDrawer');
+  const icon   = document.getElementById('wlToggleIcon');
+  toggle.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    icon.className = drawer.classList.contains('open')
+      ? 'fa-solid fa-xmark'
+      : 'fa-solid fa-bars';
+  });
+</script>
