@@ -1,15 +1,123 @@
-<footer>
-    <div class="f-info">
-    <div class="f-info-socials">
-        <i class="fa-brands fa-square-facebook"></i>
-        <i class="fa-brands fa-square-instagram"></i>
-        <i class="fa-brands fa-linkedin"></i>
+<footer class="footer">
+  <div class="footer-container">
 
+    <div class="footer-section">
+      <h3>🌍 WonderLust</h3>
+      <p>
+        A full-stack travel accommodation platform inspired by Airbnb,
+        where users can discover destinations, create listings,
+        upload images, leave reviews, and manage bookings seamlessly.
+      </p>
     </div>
-    <div class="f-info-brand"> &copy; Wonderlust private limited</div>
-    <div class="f-info-links ">
-        <a href="/privicy">Privacy</a>
-        <a href="/terms">terms</a>
+
+    <div class="footer-section">
+      <h4>✨ Features</h4>
+      <ul>
+        <li>Property Listings</li>
+        <li>User Authentication</li>
+        <li>Reviews & Ratings</li>
+        <li>Cloud Image Uploads</li>
+        <li>Interactive Maps</li>
+      </ul>
     </div>
-</div>
+
+    <div class="footer-section">
+      <h4>🛠 Tech Stack</h4>
+      <ul>
+        <li>Node.js</li>
+        <li>Express.js</li>
+        <li>MongoDB Atlas</li>
+        <li>EJS & Bootstrap</li>
+        <li>Cloudinary</li>
+        <li>Passport.js</li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>👨‍💻 Developer</h4>
+      <p>
+        Developed by <strong>Srujan V</strong>
+      </p>
+      <p>B.E. Information Science Student | Full Stack Developer</p>
+
+      <!-- Replace these links with yours -->
+      <div class="social-links">
+        <a href="https://github.com/Srujan-017" target="_blank">GitHub</a>
+        <a href="www.linkedin.com/in/srujan-v-049560325" target="_blank">LinkedIn</a>
+        <a href="vsrujan480@gmail.com">Email</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      © <%= new Date().getFullYear() %> WonderLust • Built with ❤️ using
+      Node.js, Express, MongoDB, EJS & Cloudinary
+    </p>
+  </div>
 </footer>
+
+<style>
+.footer{
+    margin-top:4rem;
+    background:linear-gradient(135deg,#111827,#1f2937);
+    color:#fff;
+    padding-top:3rem;
+}
+
+.footer-container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:2rem;
+}
+
+.footer-section h3,
+.footer-section h4{
+    margin-bottom:1rem;
+    color:#ff6b6b;
+}
+
+.footer-section p{
+    color:#d1d5db;
+    line-height:1.7;
+}
+
+.footer-section ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer-section ul li{
+    margin-bottom:0.6rem;
+    color:#d1d5db;
+}
+
+.social-links{
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+}
+
+.social-links a{
+    color:#f3f4f6;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.social-links a:hover{
+    color:#ff6b6b;
+    transform:translateX(5px);
+}
+
+.footer-bottom{
+    margin-top:2rem;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding:1.5rem;
+    color:#9ca3af;
+}
+</style>
