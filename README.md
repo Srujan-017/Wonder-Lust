@@ -3,8 +3,7 @@
 Wonderlust is a full-stack travel listing platform inspired by modern stay-booking experiences. It lets users create listings, upload images, explore destinations, filter listings by travel category, search by location, leave reviews, and view mapped listing locations.
 
 ## Live Deployment
-
-Render deployment is configured with `render.yaml`.
+https://wonder-lust-sm1n.onrender.com/listings
 
 [Deploy on Render](https://render.com/deploy?repo=https://github.com/Srujan-017/Wonder-Lust)
 
