@@ -1,7 +1,9 @@
 const User=require("../models/user");
 
 module.exports.renderSignupForm=(req,res)=>{
-    res.render("Users/signup.ejs");
+    res.render("Users/signup.ejs", {
+        hideFooter: true
+    });
 }
 
 module.exports.signup=async(req,res,next)=>{
@@ -22,9 +24,11 @@ module.exports.signup=async(req,res,next)=>{
       res.redirect("/signup");
     }
   }
-  module.exports.renderLoginForm=(req,res)=>{
-    res.render("Users/login.ejs");
-    }
+module.exports.renderLoginForm=(req,res)=>{
+    res.render("Users/login.ejs", {
+        hideFooter: true
+    });
+}
   module.exports.login=async(req,res)=>{
     req.flash("success","welcome back to wonderlust");
    let redirectUrl= res.locals.redirectUrl || "/listings";
